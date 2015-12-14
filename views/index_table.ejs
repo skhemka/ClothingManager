@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="javascripts/index_table.js"></script>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Color</th>
+            <th>Type</th>
+            <th>Weather</th>
+            <th>Status</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% if (obj.length) { %>
+            <% obj.forEach(function(next) { %>
+                <tr>
+                    <td><%=next.name%></td>
+                    <td><%=next.color%></td>
+                    <td><%=next.type%></td>
+                    <td><%=next.weather%></td>
+                    <td><%=next.status%></td>
+                    <td class="update">
+                        <button title="Use" class="btn btn-default" type="submit"><span class="glyphicon glyphicon-ok"></span></button>
+                        <input type="hidden" name="name_update" value="<%=next.name%>">
+                        <input type="hidden" name="status_update" value="<%=next.status%>">
+                    </td>
+                    <td class="delete">
+                        <button title="Delete" class="btn btn-default" type="submit"><span class="glyphicon glyphicon-remove"></span></button>
+                        <input type="hidden" name="name_delete" value="<%=next.name%>">
+                    </td>
+                </tr>
+            <% }); %>
+        <% } %>
+    </tbody>
+</table>

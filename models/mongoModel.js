@@ -8,7 +8,7 @@ var mongoClient = require('mongodb').MongoClient;
  * This connection_string is for mongodb running locally.
  * Change nameOfMyDb to reflect the name you want for your database
  */
-var connection_string = 'localhost:27017/nameOfMyDb';
+var connection_string = 'localhost:27017/clothes';
 /*
  * If OPENSHIFT env variables have values, then this app must be running on 
  * OPENSHIFT.  Therefore use the connection info in the OPENSHIFT environment

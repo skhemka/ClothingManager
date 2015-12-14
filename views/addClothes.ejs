@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="javascripts/addClothes.js"></script>
+		<title>Clothing Manager</title>
+	</head>
+    <header class="page-header text-center">
+        <a href="/"><h1>Clothing Manager</h1></a>
+        <span>
+            <a href="/all">All</a> |
+            <a href="/dirty">Dirty</a> |
+            <a href="/addClothes">Add</a>
+        </span>
+        <p>The weather for today is: <span id="weather"> F</span></p>
+        <p>Feels: <span id="feels"></span></p>
+    </header>
+	<body>
+        <div class="container-fluid text-center">
+            <h2>Add Clothes</h2>
+            <form id="new">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id="name"></input>
+                </div>
+                <div class="form-group">
+                    <label>Color</label>
+                    <input type="text" id="color"></input>
+                </div>
+                <div class="form-group">
+                    <label>Type</label>
+                    <input type="text" id="type"></input>
+                </div>
+                <div class="form-group">
+                    <label>Weather</label>
+                    <input type="text" id="weather"></input>
+                </div>
+                <div class="form-group">
+                    <label>Status</label>
+                    <input type="text" id="status"></input>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Add Clothing Item">
+                </div>
+            </form>
+        </div>
+	</body>
+    <footer class="page-footer text-center">
+        <p class="text-muted">Shreeyagya Khemka</p>
+    </footer>
+</html>
+
+

@@ -4,6 +4,9 @@ var mongoModel = require("../models/mongoModel.js")
 // Define the routes for this controller
 exports.init = function(app) {
   app.get('/', index); // essentially the app welcome page
+  app.get('/all', all); 
+  app.get('/dirty', dirty); 
+  app.get('/addClothes', addClothes)
   // The collection parameter maps directly to the mongoDB collection
   app.put('/:collection', doCreate); // CRUD Create
   app.get('/:collection', doRetrieve); // CRUD Retrieve
@@ -13,8 +16,21 @@ exports.init = function(app) {
 
 // No path:  display instructions for use
 index = function(req, res) {
-  res.render('index',{})
+  res.render('index',{});
 };
+
+all = function(req, res) {
+  res.render('all',{});
+};
+
+dirty = function(req, res) {
+  res.render('dirty',{});
+};
+
+addClothes = function(req,res) {
+  res.render('addClothes',{});
+}
+
 
 /********** CRUD Create *******************************************************
  * Take the object defined in the request body and do the Create
@@ -57,7 +73,7 @@ doCreate = function(req, res){
 		                  function(result) {
 		                    // result equal to true means create was successful
   		                  var success = (result ? "Create successful" : "Create unsuccessful");
-	  	                  res.render('message', {title: 'Mongo Demo', obj: success});
+	  	                  res.redirect('');
      		                console.log("2. Done with callback in dbRoutes create");
 		                  });
   console.log("3. Done with doCreate in dbRoutes");
@@ -84,11 +100,10 @@ doRetrieve = function(req, res){
     req.query,
 		function(modelData) {
 		  if (modelData.length) {
-        res.render('results',{title: 'Mongo Demo', obj: modelData});
+        res.render('index_table',{obj: modelData});
       } else {
-        var message = "No documents with "+JSON.stringify(req.query)+ 
-                      " in collection "+req.params.collection+" found.";
-        res.render('message', {title: 'Mongo Demo', obj: message});
+        var message = "No clothes found. Add clothes or wash dirty clothes!";
+        res.render('message', {obj: message});
       }
 		});
 }
@@ -103,13 +118,25 @@ doRetrieve = function(req, res){
  */ 
 doUpdate = function(req, res){
   // if there is no filter to select documents to update, select all documents
-  var filter = req.body.find ? JSON.parse(req.body.find) : {};
+  //var filter = req.body.name ? JSON.parse(req.body.name) : {};
+  console.log("name");
+  console.log(req.body.name);
+  var filter = {};
+  if(req.body.name) 
+    filter = {'name': req.body.name};
+
+
+  console.log(filter);
+  
   // if there no update operation defined, render an error page.
-  if (!req.body.update) {
+  if (!req.body.status) {
     res.render('message', {title: 'Mongo Demo', obj: "No update operation defined"});
     return;
   }
-  var update = JSON.parse(req.body.update);
+  var update = {"$set":{"status":req.body.status}}
+  console.log("update");
+  //var update = JSON.parse(req.body.update);
+  console.log(update);
   /*
    * Call the model Update with:
    *  - The collection to update
@@ -126,6 +153,8 @@ doUpdate = function(req, res){
 		                  function(status) {
               				  res.render('message',{title: 'Mongo Demo', obj: status});
 		                  });
+  
+  console.log("done with update");
 }
 
 /********** CRUD Delete *******************************************************
@@ -134,8 +163,10 @@ doUpdate = function(req, res){
  * http://mongodb.github.io/node-mongodb-native/2.0/api/Collection.html#remove
  */
 doDelete = function(req, res){
+  console.log("starting delete");
   // if there is no filter to select documents to update, select all documents
   var filter = req.body.selector ? JSON.parse(req.body.selector) : {};
+  console.log(filter);
   /*
    * Call the model Delete with:
    *  - The collection to update
@@ -146,10 +177,13 @@ doDelete = function(req, res){
    *  - As discussed above, an anonymous callback function to be called by the
    *    model once the delete has been successful.
    */
-  mongoModel.delete(  req.params.collection, filter,
+  console.log("query");
+  console.log(req.body);
+  mongoModel.delete(  req.params.collection, req.body,
 		                  function(status) {
               				  res.render('message',{title: 'Mongo Demo', obj: status});
 		                  });
+  console.log("Delete done"); 
 }
 
 /*
