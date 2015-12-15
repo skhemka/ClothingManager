@@ -2,12 +2,13 @@
 <html>
 	<head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="stylesheets/style.css">
         <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <script src="javascripts/application.js"></script>
 		<title>Clothing Manager</title>
 	</head>
-    <header class="page-header text-center">
+    <header class="page-header text-center wheader">
         <a href="/"><h1>Clothing Manager</h1></a>
         <span>
             <a href="/all">All</a> |
@@ -19,14 +20,16 @@
     </header>
 	<body>
         <div class="container-fluid">
-            <div id="message"></div>
-            <h2>Can wear today</h2>
-            <h3>Shirts</h3>
-            <div id="rstable"></div>
-            <h3>Pants</h3>
-            <div id="pstable"></div>
-            <h3>Jacket</h3>
-            <div id="jstable"></div>
+            <div class="written">
+                <div id="message"></div>
+                <h2>Your suggestions for today:</h2>
+                <h3>Shirts:</h3>
+                <div id="rstable"></div>
+                <h3>Pants:</h3>
+                <div id="pstable"></div>
+                <h3>Jacket:</h3>
+                <div id="jstable"></div>
+            </div>
         </div>
 	</body>
     <footer class="page-footer text-center">

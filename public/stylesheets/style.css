@@ -1,12 +1,17 @@
-@font-face {
-    font-family: "xkcd";
-    src: url('/fonts/Humor-Sans-1.0.ttf');
+.written {
+    background-color: #4B4D52;
+    color: #B9B1A8;
+    font-family: "Helvetica";
+    padding: 20px;
+}
+
+.wheader {
+    background-color: #FFF2E7;
+    color: #4B4D52;
+    padding: 20px;
+    margin: 20px;
 }
 
 body {
-	padding: 20px;
-  font-family: "xkcd", sans-serif;
-  font-size: 20px;
-  color: #f83;
-  margin-top: 25px;
+    background-image: url("../images/clothes.jpg");
 }
